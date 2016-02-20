@@ -214,14 +214,14 @@ gulpPrefixer = function (AWS) {
                                     gutil.log(gutil.colors.yellow("Updated ....... "), keyname);
 
                                     if (options.onChange && typeof options.onChange === 'function') {
-                                      options.onChange.call(this, keyname);
+                                      options.onChange.call(this, keyname, data);
                                     }
 
                                 } else {
                                     gutil.log(gutil.colors.gray("No Change ..... "), keyname);
 
                                     if (options.onNoChange && typeof options.onNoChange === 'function') {
-                                      options.onNoChange.call(this, keyname);
+                                      options.onNoChange.call(this, keyname, data);
                                     }
                                     
                                 }
@@ -230,7 +230,7 @@ gulpPrefixer = function (AWS) {
                                 gutil.log(gutil.colors.green("Uploaded! ..... "), keyname);
 
                                 if (options.onNew && typeof options.onNew === 'function') {
-                                  options.onNew.call(this, keyname);
+                                  options.onNew.call(this, keyname, data);
                                 }
                             }
 
