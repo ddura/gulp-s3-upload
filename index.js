@@ -208,8 +208,12 @@ gulpPrefixer = function (AWS) {
                             if (err) {
                                 return callback(new gutil.PluginError(PLUGIN_NAME, "S3 putObject Error: " + err.stack));
                             }
-
+                            
+                            var versionId;
+                            
                             if (head_data) {
+                                versionId = head_data.VersionId;
+                                
                                 if (head_data.ETag !== data.ETag) {
                                     gutil.log(gutil.colors.yellow("Updated ....... "), keyname);
 
@@ -226,6 +230,8 @@ gulpPrefixer = function (AWS) {
                                     
                                 }
                             } else {
+                                versionId = data.VersionId;
+                                
                                 // Doesn't exist in bucket; the object is new to the bucket
                                 gutil.log(gutil.colors.green("Uploaded! ..... "), keyname);
 
@@ -234,7 +240,7 @@ gulpPrefixer = function (AWS) {
                                 }
                             }
 
-                            callback(null);
+                            callback(null, {keyname:keyname,versionId:versionId});
                         });
                     }
                 }
