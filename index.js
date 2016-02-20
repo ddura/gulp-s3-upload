@@ -155,7 +155,7 @@ gulpPrefixer = function (AWS) {
                       options.onNoChange.call(this, keyname);
                     }
 
-                    callback(null);
+                    callback(null, {keyname:keyname, versionId:head_data.VersionId});
 
                 } else {
 
